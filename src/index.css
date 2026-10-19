@@ -1,0 +1,233 @@
+@import "tailwindcss";
+@import "@fontsource-variable/newsreader/opsz.css";
+@import "@fontsource-variable/newsreader/opsz-italic.css";
+@import "@fontsource-variable/geist";
+
+@theme {
+  /* Newsreader for everything you read, Geist for everything you operate */
+  --font-serif: "Newsreader Variable", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* white pages, cool ink, one deep green */
+  --color-paper: #fcfcfa;
+  --color-wash: #f2f4f1;
+  --color-ink: #15181a;
+  --color-ink-2: #3a3f43;
+  --color-muted: #646a6f;
+  --color-line: #e2e5e1;
+  --color-accent: #14553a;
+  --color-accent-2: #0d3f2a;
+  --color-accent-soft: #e3eee7;
+  --color-amber: #8a5300;
+  --color-amber-soft: #f8efdf;
+  --color-danger: #b42318;
+  --color-danger-soft: #fbeae8;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    font-feature-settings: "ss01";
+  }
+  ::selection {
+    @apply bg-accent-soft text-accent-2;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+  button:not(:disabled),
+  [role="button"],
+  [role="tab"],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="file"]:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+}
+
+/* Headlines: large optical size, tight but never clipping descenders. */
+@utility headline {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+/* Article body. Shared by published stories, the editor preview and the review screen. */
+@utility prose-folio {
+  font-family: var(--font-serif);
+  font-size: 1.24rem;
+  line-height: 1.68;
+  color: var(--color-ink-2);
+  font-optical-sizing: auto;
+
+  & > * + * {
+    margin-top: 1.15em;
+  }
+  & > p:first-of-type::first-letter {
+    float: left;
+    font-size: 4.1em;
+    line-height: 0.82;
+    padding: 0.06em 0.09em 0 0;
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+  & h2,
+  & h3,
+  & h4 {
+    font-family: var(--font-serif);
+    color: var(--color-ink);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    scroll-margin-top: 6rem;
+    text-wrap: balance;
+  }
+  & h2 {
+    font-size: 1.65em;
+    margin-top: 1.9em;
+  }
+  & h3 {
+    font-size: 1.3em;
+    margin-top: 1.6em;
+  }
+  & h4 {
+    font-size: 1.05em;
+    margin-top: 1.4em;
+  }
+  & a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  & a:hover {
+    text-decoration-thickness: 2px;
+  }
+  & strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  & blockquote {
+    margin: 1.8em 0;
+    padding-left: 1.1em;
+    border-left: 3px solid var(--color-accent);
+    font-size: 1.28em;
+    line-height: 1.4;
+    font-style: italic;
+    color: var(--color-ink);
+  }
+  & blockquote > * + * {
+    margin-top: 0.6em;
+  }
+  & ul,
+  & ol {
+    padding-left: 1.3em;
+  }
+  & ul {
+    list-style: disc;
+  }
+  & ol {
+    list-style: decimal;
+  }
+  & li + li {
+    margin-top: 0.4em;
+  }
+  & li::marker {
+    color: var(--color-accent);
+  }
+  & hr {
+    border: 0;
+    text-align: center;
+    margin: 2.2em 0;
+  }
+  & hr::after {
+    content: "* * *";
+    letter-spacing: 0.6em;
+    color: var(--color-muted);
+  }
+  & img {
+    width: 100%;
+    margin: 1.8em 0;
+  }
+  & :not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.78em;
+    background: var(--color-wash);
+    padding: 0.12em 0.36em;
+    border-radius: 4px;
+    color: var(--color-ink);
+  }
+  & pre {
+    font-family: var(--font-mono);
+    font-size: 0.74em;
+    line-height: 1.65;
+    background: var(--color-wash);
+    border-left: 3px solid var(--color-line);
+    padding: 1.1em 1.25em;
+    overflow-x: auto;
+    color: var(--color-ink);
+  }
+  & table {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.74em;
+    line-height: 1.45;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+  }
+  & th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-ink);
+    border-bottom: 2px solid var(--color-ink);
+    padding: 0.6em 1em 0.6em 0;
+  }
+  & td {
+    border-bottom: 1px solid var(--color-line);
+    padding: 0.6em 1em 0.6em 0;
+    vertical-align: top;
+  }
+}
+
+/* Syntax colours kept inside the ink + green family. */
+.hljs-keyword,
+.hljs-built_in,
+.hljs-literal {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.hljs-string,
+.hljs-regexp {
+  color: #6b4c12;
+}
+.hljs-number {
+  color: #7a3e2b;
+}
+.hljs-comment {
+  color: var(--color-muted);
+  font-style: italic;
+}
+.hljs-title,
+.hljs-function .hljs-title,
+.hljs-attr,
+.hljs-property {
+  color: #1e4b6b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

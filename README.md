@@ -1,66 +1,31 @@
-# BlogApi Frontend
-A frontend of the Blog project.
+# Folio
 
-# Demo
-This app is deployed on cloud. Please check it out :smile: https://blog.hetdelwadiya.dev
+A small magazine with a real editorial desk: writers draft in Markdown and submit, editors approve, send back with notes, or decline. Live at **[blog.hetdelwadiya.dev](https://blog.hetdelwadiya.dev)**.
 
-User - test@user.com | password - 123456
+API: [blog-backend](https://github.com/het-delwadiya/blog-backend)
 
-Admin - test@admin.com | password - 123456
+## Features
 
-## Note 
+- **Reading:** editorial front page, article pages with a reading-progress bar, a table of contents that follows your scroll, responses, a reading list, topics, writer pages and full-text search.
+- **Writing:** Markdown editor with a formatting toolbar and keyboard shortcuts, a live split preview that matches the published page, autosave, cover and inline image uploads (paste or drop), topics, and the editor's notes right where you revise.
+- **Editing:** a review queue, a word-level diff of what changed since the last review, approve / request changes / decline with a note, and the full review history.
+- **Try it without an account:** demo writer and demo editor logins. Demo work is only visible to demo sessions and resets on its own.
 
-  * This repo is just a frontend of the blog project. You need backend also. Check out the backend of blog project -> https://github.com/HeT-Delwadiya/blog-backend.
+## Stack
 
-## Install
+React 19, TypeScript, Vite, Tailwind CSS 4, React Router 7, TanStack Query, Zustand, Motion, marked + DOMPurify, jsdiff, Phosphor icons. Type is Newsreader and Geist.
 
-Some basic Git commands are:
+## Development
 
-```
-$ git clone https://github.com/HeT-Delwadiya/blog-frontend.git
-$ cd blog-frontend-main
-$ npm install
-```
-
-## Setup
-
-```
- Rename .env.renameMe file to .env
+```bash
+npm install
+npm run dev      # http://localhost:5175, expects the API on :8010
+npm test
+npm run build
 ```
 
-## Heroku Deployment
+Set `VITE_API_URL` to point at another API (default `http://localhost:8010/blog/api`).
 
-```
-> Create a Procfile in the root directory of your application with the following command **web: npm run start:production**
-```
+## License
 
-
-## Simple build for production
-
-```
-$ npm run production
-```
-
-## Run the application for development
-
-```
-$ npm start
-```
-
-## Run the application for production
-
-```
-$ npm run start:production
-```
-
-## Languages & tools
-
-- [Node](https://nodejs.org/en/)
-
-- [Express](https://expressjs.com/)
-
-- [Mongoose](https://mongoosejs.com/)
-
-- [React](https://reactjs.org/)
-
-- [Redux](https://redux.js.org/)
+GPL-3.0
